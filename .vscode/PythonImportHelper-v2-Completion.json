@@ -1,0 +1,352 @@
+[
+    {
+        "label": "pygame",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygame",
+        "description": "pygame",
+        "detail": "pygame",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "Button",
+        "kind": 6,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "class Button(pygame.sprite.Sprite):\n    def __init__(self, img, scale, x, y):\n        super(Button, self).__init__()\n        self.image = pygame.transform.scale(img, scale)\n        self.rect = self.image.get_rect()\n        self.rect.x = x\n        self.rect.y = y\n        self.clicked = False\n    def draw(self, win, image=None):\n        if image:",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "Board",
+        "kind": 6,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "class Board:\n    def __init__(self, imglist):\n        self.image_list = imglist\n        self.extended_imglist = imglist * 2  # Duplicate the image list to create pairs\n        self.board = None\n        self.randomize_images()\n    def randomize_images(self):\n        random.shuffle(self.extended_imglist)  # Shuffle the extended image list\n        board = [[0 for j in range(COLS)] for i in range(ROWS)]\n        margin_x = (WIDTH - (COLS * TILESIZE + (COLS - 1) * 10)) // 2",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "Card",
+        "kind": 6,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "class Card:\n    def __init__(self, value, index, image, pos):\n        self.value = value\n        self.index = index\n        self.image = image\n        self.pos = pos\n        self.is_alive = True\n        self.visible = False\n        self.animate = False\n        self.slide_left = True",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "draw_gradient",
+        "kind": 2,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "def draw_gradient(win, color1, color2, rect):\n    for i in range(rect.height):\n        color = [\n            color1[j] + (color2[j] - color1[j]) * i // rect.height\n            for j in range(3)\n        ]\n        pygame.draw.line(win, color, (rect.x, rect.y + i), (rect.x + rect.width, rect.y + i))\ndef message_box(win, font, name, text):\n    WIDTH = 540\n    HEIGHT = 300",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "message_box",
+        "kind": 2,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "def message_box(win, font, name, text):\n    WIDTH = 540\n    HEIGHT = 300\n    x = 35\n    y = 185  # depends on message box location\n    pygame.draw.rect(win, (255, 255, 255), (25, 150, WIDTH, HEIGHT), border_radius=10)\n    for word in text.split(' '):\n        rendered = font.render(word, 0, (0, 0, 0))\n        width = rendered.get_width()\n        if x + width >= WIDTH:",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "SCREEN",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "SCREEN = WIDTH, HEIGHT = 1000, 800  # Adjusted height for buttons\nwin = pygame.display.set_mode(SCREEN)\npygame.display.set_caption('Memory Puzzle')\nclock = pygame.time.Clock()\nFPS = 30\nROWS, COLS = 4, 5\nTILESIZE = 140  # Adjusted for slightly smaller cards\nBLACK = (0, 0, 0)\nBLUE = (0, 0, 255)\nRED = (255, 25, 25)",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "win",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "win = pygame.display.set_mode(SCREEN)\npygame.display.set_caption('Memory Puzzle')\nclock = pygame.time.Clock()\nFPS = 30\nROWS, COLS = 4, 5\nTILESIZE = 140  # Adjusted for slightly smaller cards\nBLACK = (0, 0, 0)\nBLUE = (0, 0, 255)\nRED = (255, 25, 25)\nWHITE = (255, 255, 255)",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "clock",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "clock = pygame.time.Clock()\nFPS = 30\nROWS, COLS = 4, 5\nTILESIZE = 140  # Adjusted for slightly smaller cards\nBLACK = (0, 0, 0)\nBLUE = (0, 0, 255)\nRED = (255, 25, 25)\nWHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "FPS",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "FPS = 30\nROWS, COLS = 4, 5\nTILESIZE = 140  # Adjusted for slightly smaller cards\nBLACK = (0, 0, 0)\nBLUE = (0, 0, 255)\nRED = (255, 25, 25)\nWHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "TILESIZE",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "TILESIZE = 140  # Adjusted for slightly smaller cards\nBLACK = (0, 0, 0)\nBLUE = (0, 0, 255)\nRED = (255, 25, 25)\nWHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")\n    image = pygame.transform.scale(image, (TILESIZE, TILESIZE))\n    img_list.append(image)",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "BLACK",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "BLACK = (0, 0, 0)\nBLUE = (0, 0, 255)\nRED = (255, 25, 25)\nWHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")\n    image = pygame.transform.scale(image, (TILESIZE, TILESIZE))\n    img_list.append(image)\nbg = pygame.image.load('Assets/bg.jpg')",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "BLUE",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "BLUE = (0, 0, 255)\nRED = (255, 25, 25)\nWHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")\n    image = pygame.transform.scale(image, (TILESIZE, TILESIZE))\n    img_list.append(image)\nbg = pygame.image.load('Assets/bg.jpg')\ngame_won = pygame.image.load('Assets/won.png')",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "RED",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "RED = (255, 25, 25)\nWHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")\n    image = pygame.transform.scale(image, (TILESIZE, TILESIZE))\n    img_list.append(image)\nbg = pygame.image.load('Assets/bg.jpg')\ngame_won = pygame.image.load('Assets/won.png')\nclass Button(pygame.sprite.Sprite):",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "WHITE",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "WHITE = (255, 255, 255)\nimg_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")\n    image = pygame.transform.scale(image, (TILESIZE, TILESIZE))\n    img_list.append(image)\nbg = pygame.image.load('Assets/bg.jpg')\ngame_won = pygame.image.load('Assets/won.png')\nclass Button(pygame.sprite.Sprite):\n    def __init__(self, img, scale, x, y):",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "img_list",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "img_list = []\nfor img in range(1, 11):  # Adjusted for more images\n    image = pygame.image.load(f\"Assets/icons/{img}.jpg\")\n    image = pygame.transform.scale(image, (TILESIZE, TILESIZE))\n    img_list.append(image)\nbg = pygame.image.load('Assets/bg.jpg')\ngame_won = pygame.image.load('Assets/won.png')\nclass Button(pygame.sprite.Sprite):\n    def __init__(self, img, scale, x, y):\n        super(Button, self).__init__()",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "bg",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "bg = pygame.image.load('Assets/bg.jpg')\ngame_won = pygame.image.load('Assets/won.png')\nclass Button(pygame.sprite.Sprite):\n    def __init__(self, img, scale, x, y):\n        super(Button, self).__init__()\n        self.image = pygame.transform.scale(img, scale)\n        self.rect = self.image.get_rect()\n        self.rect.x = x\n        self.rect.y = y\n        self.clicked = False",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "game_won",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "game_won = pygame.image.load('Assets/won.png')\nclass Button(pygame.sprite.Sprite):\n    def __init__(self, img, scale, x, y):\n        super(Button, self).__init__()\n        self.image = pygame.transform.scale(img, scale)\n        self.rect = self.image.get_rect()\n        self.rect.x = x\n        self.rect.y = y\n        self.clicked = False\n    def draw(self, win, image=None):",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "restart_img",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "restart_img = pygame.image.load('Assets/restart.png')\nrestart_btn = Button(restart_img, (100, 50), 350, 720)  # Adjusted size and position\nclose_img = pygame.image.load('Assets/close.png')\nclose_btn = Button(close_img, (100, 50), 550, 720)  # Adjusted size and position\nsys_font = pygame.font.SysFont((\"Times New Roman\"), 20)\nclass Board:\n    def __init__(self, imglist):\n        self.image_list = imglist\n        self.extended_imglist = imglist * 2  # Duplicate the image list to create pairs\n        self.board = None",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "restart_btn",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "restart_btn = Button(restart_img, (100, 50), 350, 720)  # Adjusted size and position\nclose_img = pygame.image.load('Assets/close.png')\nclose_btn = Button(close_img, (100, 50), 550, 720)  # Adjusted size and position\nsys_font = pygame.font.SysFont((\"Times New Roman\"), 20)\nclass Board:\n    def __init__(self, imglist):\n        self.image_list = imglist\n        self.extended_imglist = imglist * 2  # Duplicate the image list to create pairs\n        self.board = None\n        self.randomize_images()",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "close_img",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "close_img = pygame.image.load('Assets/close.png')\nclose_btn = Button(close_img, (100, 50), 550, 720)  # Adjusted size and position\nsys_font = pygame.font.SysFont((\"Times New Roman\"), 20)\nclass Board:\n    def __init__(self, imglist):\n        self.image_list = imglist\n        self.extended_imglist = imglist * 2  # Duplicate the image list to create pairs\n        self.board = None\n        self.randomize_images()\n    def randomize_images(self):",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "close_btn",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "close_btn = Button(close_img, (100, 50), 550, 720)  # Adjusted size and position\nsys_font = pygame.font.SysFont((\"Times New Roman\"), 20)\nclass Board:\n    def __init__(self, imglist):\n        self.image_list = imglist\n        self.extended_imglist = imglist * 2  # Duplicate the image list to create pairs\n        self.board = None\n        self.randomize_images()\n    def randomize_images(self):\n        random.shuffle(self.extended_imglist)  # Shuffle the extended image list",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "sys_font",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "sys_font = pygame.font.SysFont((\"Times New Roman\"), 20)\nclass Board:\n    def __init__(self, imglist):\n        self.image_list = imglist\n        self.extended_imglist = imglist * 2  # Duplicate the image list to create pairs\n        self.board = None\n        self.randomize_images()\n    def randomize_images(self):\n        random.shuffle(self.extended_imglist)  # Shuffle the extended image list\n        board = [[0 for j in range(COLS)] for i in range(ROWS)]",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "board",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "board = Board(img_list)\nanimated_boxes = [(randint(0, ROWS - 1), randint(0, COLS - 1)) for i in range(10)]  # Adjusted for new board size\ngame_screen = True\nfirst_card = None\nsecond_card = None\nfirst_click_time = None\nsecond_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "animated_boxes",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "animated_boxes = [(randint(0, ROWS - 1), randint(0, COLS - 1)) for i in range(10)]  # Adjusted for new board size\ngame_screen = True\nfirst_card = None\nsecond_card = None\nfirst_click_time = None\nsecond_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "game_screen",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "game_screen = True\nfirst_card = None\nsecond_card = None\nfirst_click_time = None\nsecond_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "first_card",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "first_card = None\nsecond_card = None\nfirst_click_time = None\nsecond_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "second_card",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "second_card = None\nfirst_click_time = None\nsecond_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "first_click_time",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "first_click_time = None\nsecond_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True\nwhile running:",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "second_click_time",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "second_click_time = None\nnumCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "numCards",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "numCards = 20  # Adjusted for new board size\nisLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "isLoading",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "isLoading = True\nanimation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size\n    if restart_btn.draw(win):",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "animation_on",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "animation_on = True\nanimation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size\n    if restart_btn.draw(win):\n        game_screen = True",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "animation_count",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "animation_count = 0\ngameWon = False\nnumClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size\n    if restart_btn.draw(win):\n        game_screen = True\n        first_card = None",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "gameWon",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "gameWon = False\nnumClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size\n    if restart_btn.draw(win):\n        game_screen = True\n        first_card = None\n        second_card = None",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "numClicks",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "numClicks = 0\nrunning = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size\n    if restart_btn.draw(win):\n        game_screen = True\n        first_card = None\n        second_card = None\n        first_click_time = None",
+        "detail": "game",
+        "documentation": {}
+    },
+    {
+        "label": "running",
+        "kind": 5,
+        "importPath": "game",
+        "description": "game",
+        "peekOfCode": "running = True\nwhile running:\n    win.blit(bg, (0, 0), (400, 100, WIDTH, HEIGHT))\n    pygame.draw.rect(win, BLUE, (5, 10, 980, 680), 2)  # Adjusted size\n    if restart_btn.draw(win):\n        game_screen = True\n        first_card = None\n        second_card = None\n        first_click_time = None\n        second_click_time = None",
+        "detail": "game",
+        "documentation": {}
+    }
+]
